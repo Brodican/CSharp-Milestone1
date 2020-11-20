@@ -17,7 +17,12 @@ namespace GuessingGame
             {
                 try
                 {
-                    guess = int.Parse(Console.ReadLine());
+                    string result = Console.ReadLine();
+                    if (result.Equals("q"))
+                    {
+                        break;
+                    }
+                    guess = int.Parse(result);
                 }
                 catch (Exception)
                 {
@@ -26,7 +31,12 @@ namespace GuessingGame
                 }
                 
                 if (guess == number)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Well done, you win!");
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     break;
+                }
 
                 if (guess < number)
                 {
@@ -36,10 +46,14 @@ namespace GuessingGame
                     direction = "lower";
                 }
 
-                Console.WriteLine("Try again! Guess " + direction + " this time.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Try again! Guess " + direction + " this time, or input 'q' to quit.");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
 
-            Console.WriteLine("Well done, you win!");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Hope to see you again soon!");
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }
